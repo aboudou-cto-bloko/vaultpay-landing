@@ -1,0 +1,146 @@
+/* ============================================
+   VAULTPAY TYPOGRAPHY SYSTEM
+   Premium Fintech Scale with Jost
+   ============================================ */
+
+@layer base {
+    :root {
+        /* ============================================
+       FONT WEIGHTS
+       ============================================ */
+        --vp-font-weight-regular: 400;
+        --vp-font-weight-medium: 500;
+        --vp-font-weight-semibold: 600;
+        --vp-font-weight-bold: 700;
+
+        /* ============================================
+       FONT SIZES - DISPLAY (Hero/Landing)
+       ============================================ */
+        --vp-font-size-display-xl: 4rem; /* 64px */
+        --vp-font-size-display-lg: 3.5rem; /* 56px */
+        --vp-font-size-display-md: 3rem; /* 48px */
+
+        /* ============================================
+       FONT SIZES - HEADINGS
+       ============================================ */
+        --vp-font-size-h1: 2.5rem; /* 40px */
+        --vp-font-size-h2: 2rem; /* 32px */
+        --vp-font-size-h3: 1.5rem; /* 24px */
+        --vp-font-size-h4: 1.25rem; /* 20px */
+        --vp-font-size-h5: 1.125rem; /* 18px */
+        --vp-font-size-h6: 1rem; /* 16px */
+
+        /* ============================================
+       FONT SIZES - BODY
+       ============================================ */
+        --vp-font-size-body-lg: 1.125rem; /* 18px */
+        --vp-font-size-body-base: 1rem; /* 16px */
+        --vp-font-size-body-sm: 0.875rem; /* 14px */
+        --vp-font-size-body-xs: 0.75rem; /* 12px */
+
+        /* ============================================
+       LINE HEIGHTS
+       ============================================ */
+        --vp-line-height-tight: 1.2;
+        --vp-line-height-snug: 1.375;
+        --vp-line-height-normal: 1.5;
+        --vp-line-height-relaxed: 1.625;
+        --vp-line-height-loose: 1.75;
+
+        /* ============================================
+       LETTER SPACING
+       ============================================ */
+        --vp-letter-spacing-tight: -0.02em;
+        --vp-letter-spacing-normal: 0;
+        --vp-letter-spacing-wide: 0.02em;
+    }
+
+    /* Responsive scale */
+    @media (max-width: 768px) {
+        :root {
+            --vp-font-size-display-xl: 2.5rem; /* 40px */
+            --vp-font-size-display-lg: 2.25rem; /* 36px */
+            --vp-font-size-display-md: 2rem; /* 32px */
+            --vp-font-size-h1: 2rem; /* 32px */
+            --vp-font-size-h2: 1.75rem; /* 28px */
+            --vp-font-size-h3: 1.25rem; /* 20px */
+            --vp-font-size-h4: 1.125rem; /* 18px */
+        }
+    }
+}
+
+/* ============================================
+   TYPOGRAPHY CLASSES
+   ============================================ */
+
+@layer components {
+    /* Display */
+    .vp-display-xl {
+        font-size: var(--vp-font-size-display-xl);
+        line-height: var(--vp-line-height-tight);
+        font-weight: var(--vp-font-weight-bold);
+        letter-spacing: var(--vp-letter-spacing-tight);
+    }
+
+    .vp-display-lg {
+        font-size: var(--vp-font-size-display-lg);
+        line-height: var(--vp-line-height-tight);
+        font-weight: var(--vp-font-weight-bold);
+        letter-spacing: var(--vp-letter-spacing-tight);
+    }
+
+    .vp-display-md {
+        font-size: var(--vp-font-size-display-md);
+        line-height: var(--vp-line-height-tight);
+        font-weight: var(--vp-font-weight-semibold);
+        letter-spacing: var(--vp-letter-spacing-tight);
+    }
+
+    /* Headings */
+    .vp-h1 {
+        font-size: var(--vp-font-size-h1);
+        line-height: var(--vp-line-height-tight);
+        font-weight: var(--vp-font-weight-bold);
+        letter-spacing: var(--vp-letter-spacing-tight);
+    }
+
+    .vp-h2 {
+        font-size: var(--vp-font-size-h2);
+        line-height: var(--vp-line-height-tight);
+        font-weight: var(--vp-font-weight-bold);
+        letter-spacing: var(--vp-letter-spacing-tight);
+    }
+
+    .vp-h3 {
+        font-size: var(--vp-font-size-h3);
+        line-height: var(--vp-line-height-snug);
+        font-weight: var(--vp-font-weight-semibold);
+    }
+
+    .vp-h4 {
+        font-size: var(--vp-font-size-h4);
+        line-height: var(--vp-line-height-snug);
+        font-weight: var(--vp-font-weight-semibold);
+    }
+
+    /* Body */
+    .vp-body-lg {
+        font-size: var(--vp-font-size-body-lg);
+        line-height: var(--vp-line-height-relaxed);
+    }
+
+    .vp-body {
+        font-size: var(--vp-font-size-body-base);
+        line-height: var(--vp-line-height-normal);
+    }
+
+    .vp-body-sm {
+        font-size: var(--vp-font-size-body-sm);
+        line-height: var(--vp-line-height-normal);
+    }
+
+    .vp-body-xs {
+        font-size: var(--vp-font-size-body-xs);
+        line-height: var(--vp-line-height-loose);
+    }
+}

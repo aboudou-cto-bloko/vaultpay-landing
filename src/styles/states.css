@@ -1,0 +1,58 @@
+/* ============================================
+   VAULTPAY COMPONENT STATES
+   ============================================ */
+
+@layer base {
+    :root {
+        --vp-transition-fast: 150ms;
+        --vp-transition-base: 200ms;
+        --vp-transition-slow: 300ms;
+
+        --vp-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+        --vp-ease-out: cubic-bezier(0, 0, 0.2, 1);
+        --vp-ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+}
+
+@layer components {
+    /* VaultPay Primary Button */
+    .vp-btn-primary {
+        @apply bg-[var(--vp-primary)] text-white font-semibold;
+        @apply rounded-lg px-6 py-3;
+        @apply transition-all duration-200;
+        @apply hover:bg-[var(--vp-primary-dark)] hover:shadow-[var(--vp-shadow-primary)];
+        @apply hover:-translate-y-0.5;
+        @apply active:translate-y-0 active:shadow-sm;
+        @apply disabled:opacity-50 disabled:cursor-not-allowed;
+    }
+
+    /* VaultPay Secondary Button */
+    .vp-btn-secondary {
+        @apply bg-[var(--vp-secondary)] text-white font-semibold;
+        @apply rounded-lg px-6 py-3;
+        @apply transition-all duration-200;
+        @apply hover:bg-[var(--vp-secondary-dark)] hover:shadow-[var(--vp-shadow-secondary)];
+        @apply hover:-translate-y-0.5;
+        @apply active:translate-y-0 active:shadow-sm;
+    }
+
+    /* VaultPay Outline Button */
+    .vp-btn-outline {
+        @apply bg-transparent text-[var(--vp-primary)] font-semibold;
+        @apply border-2 border-[var(--vp-border-strong)];
+        @apply rounded-lg px-6 py-3;
+        @apply transition-all duration-200;
+        @apply hover:border-[var(--vp-primary)] hover:bg-[var(--vp-surface)];
+    }
+
+    /* VaultPay Card Interactive */
+    .vp-card-interactive {
+        @apply bg-white border border-[var(--vp-border-subtle)];
+        @apply rounded-xl p-6;
+        @apply transition-all duration-200;
+        @apply hover:border-[var(--vp-border-strong)] hover:shadow-lg;
+        @apply hover:-translate-y-1;
+        @apply active:translate-y-0 active:shadow-md;
+        @apply cursor-pointer;
+    }
+}

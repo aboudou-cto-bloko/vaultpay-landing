@@ -1,0 +1,211 @@
+/* ============================================
+   VAULTPAY BACKGROUNDS - COMPONENT CLASSES
+   Styles prêts à l'emploi pour chaque section
+   ============================================ */
+
+/* ============================================
+   SECTION BACKGROUNDS
+   ============================================ */
+
+.hero-section {
+    position: relative;
+    background:
+        radial-gradient(
+            at 20% 20%,
+            oklch(0.99 0.02 162 / 0.15) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            at 80% 30%,
+            oklch(0.99 0.03 252 / 0.12) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            at 50% 80%,
+            oklch(0.985 0.015 180 / 0.1) 0%,
+            transparent 50%
+        ),
+        oklch(1 0 0);
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+}
+
+.proofbar-section {
+    background: oklch(1 0 0);
+    box-shadow:
+        inset 0 1px 0 0 oklch(0.96 0 0),
+        inset 0 -1px 0 0 oklch(0.96 0 0);
+}
+
+.cost-section {
+    position: relative;
+    background: radial-gradient(
+        ellipse 100% 60% at 50% 30%,
+        oklch(0.99 0.015 252 / 0.2) 0%,
+        oklch(1 0 0) 70%
+    );
+}
+
+.cost-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+}
+
+.howitworks-section {
+    position: relative;
+    background: linear-gradient(
+        180deg,
+        oklch(1 0 0) 0%,
+        oklch(0.99 0.01 162) 25%,
+        oklch(0.985 0.015 162) 50%,
+        oklch(0.98 0.02 162) 75%,
+        oklch(0.975 0.025 162) 100%
+    );
+}
+
+.footer-section {
+    position: relative;
+    background: oklch(0.985 0 0);
+}
+
+.footer-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='paper' x='0' y='0' width='20' height='20' patternUnits='userSpaceOnUse'%3E%3Ccircle cx='10' cy='10' r='0.5' fill='%23000' opacity='0.03'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23paper)'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* ============================================
+   CARD COMPONENTS
+   ============================================ */
+
+.interactive-card {
+    background: oklch(1 0 0);
+    box-shadow:
+        0 1px 2px 0 oklch(0 0 0 / 0.05),
+        0 0 0 1px oklch(0.95 0 0);
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.interactive-card:hover {
+    box-shadow:
+        0 4px 6px -1px oklch(0 0 0 / 0.1),
+        0 2px 4px -2px oklch(0 0 0 / 0.1),
+        0 0 0 1px oklch(0.92 0 0);
+}
+
+.comparison-card {
+    position: relative;
+    background: oklch(1 0 0);
+    box-shadow:
+        0 4px 6px -1px oklch(0 0 0 / 0.1),
+        0 2px 4px -2px oklch(0 0 0 / 0.1),
+        0 0 0 1px oklch(0.92 0 0);
+}
+
+.comparison-card-recommended {
+    position: relative;
+    background: oklch(1 0 0);
+    box-shadow:
+        0 4px 6px -1px oklch(0 0 0 / 0.1),
+        0 2px 4px -2px oklch(0 0 0 / 0.1),
+        0 0 0 1px oklch(0.92 0 0),
+        0 0 20px oklch(0.65 0.18 162 / 0.1),
+        0 0 40px oklch(0.65 0.18 162 / 0.05);
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+    .hero-section::before,
+    .cost-section::before {
+        opacity: 0.02;
+    }
+
+    .hero-section {
+        background:
+            radial-gradient(
+                at 50% 20%,
+                oklch(0.99 0.02 162 / 0.15) 0%,
+                transparent 60%
+            ),
+            oklch(1 0 0);
+    }
+}
+
+/* ============================================
+   DARK MODE VARIANTS
+   ============================================ */
+
+.dark .hero-section {
+    background:
+        radial-gradient(
+            at 20% 20%,
+            oklch(0.2 0.02 162 / 0.15) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            at 80% 30%,
+            oklch(0.2 0.03 252 / 0.12) 0%,
+            transparent 50%
+        ),
+        oklch(0.145 0 0);
+}
+
+.dark .proofbar-section {
+    background: oklch(0.205 0 0);
+    box-shadow:
+        inset 0 1px 0 0 oklch(0.15 0 0),
+        inset 0 -1px 0 0 oklch(0.15 0 0);
+}
+
+.dark .cost-section {
+    background: radial-gradient(
+        ellipse 100% 60% at 50% 30%,
+        oklch(0.2 0.015 252 / 0.2) 0%,
+        oklch(0.145 0 0) 70%
+    );
+}
+
+.dark .howitworks-section {
+    background: linear-gradient(
+        180deg,
+        oklch(0.145 0 0) 0%,
+        oklch(0.16 0.01 162) 50%,
+        oklch(0.18 0.02 162) 100%
+    );
+}
+
+.dark .footer-section {
+    background: oklch(0.1 0 0);
+}
+
+.dark .interactive-card,
+.dark .comparison-card,
+.dark .comparison-card-recommended {
+    background: oklch(0.205 0 0);
+    box-shadow:
+        0 4px 6px -1px oklch(0 0 0 / 0.3),
+        0 0 0 1px oklch(0.3 0 0);
+}
+
+.dark .interactive-card:hover {
+    box-shadow:
+        0 10px 15px -3px oklch(0 0 0 / 0.3),
+        0 0 0 1px oklch(0.35 0 0);
+}

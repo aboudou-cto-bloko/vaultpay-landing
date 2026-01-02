@@ -1,0 +1,127 @@
+/* ============================================
+   VAULTPAY DESIGN SYSTEM - FOUNDATION TOKENS
+   Intégré avec shadcn/ui + Tailwind v4
+   ============================================ */
+
+@layer base {
+    :root {
+        /* ============================================
+       BRAND COLORS - VAULTPAY
+       ============================================ */
+
+        /* Primary - Emerald (remplace primary shadcn) */
+        --vp-primary: oklch(0.65 0.18 162); /* Emerald #10B981 */
+        --vp-primary-light: oklch(0.75 0.18 162);
+        --vp-primary-dark: oklch(0.5 0.18 162);
+        --vp-primary-foreground: oklch(1 0 0); /* White text */
+
+        /* Secondary - Blue */
+        --vp-secondary: oklch(0.63 0.25 252); /* Blue #3B82F6 */
+        --vp-secondary-light: oklch(0.73 0.25 252);
+        --vp-secondary-dark: oklch(0.53 0.25 252);
+        --vp-secondary-foreground: oklch(1 0 0);
+
+        /* ============================================
+       SURFACE COLORS
+       ============================================ */
+        --vp-surface: oklch(0.98 0 0); /* Off-white */
+        --vp-surface-elevated: oklch(1 0 0); /* Pure white */
+        --vp-surface-sunken: oklch(0.96 0 0); /* Light gray */
+
+        /* ============================================
+       BORDER COLORS
+       ============================================ */
+        --vp-border-subtle: oklch(0.95 0 0);
+        --vp-border-strong: oklch(0.8 0 0);
+
+        /* ============================================
+       TEXT COLORS (complémentaires)
+       ============================================ */
+        --vp-text-tertiary: oklch(0.64 0 0);
+        --vp-text-disabled: oklch(0.82 0 0);
+
+        /* ============================================
+       SEMANTIC COLORS
+       ============================================ */
+        --vp-success: oklch(0.65 0.2 145); /* Green */
+        --vp-success-light: oklch(0.75 0.2 145);
+        --vp-success-bg: oklch(0.96 0.05 145);
+
+        --vp-warning: oklch(0.7 0.18 80); /* Orange */
+        --vp-warning-light: oklch(0.8 0.18 80);
+        --vp-warning-bg: oklch(0.96 0.05 80);
+
+        --vp-danger: oklch(0.63 0.26 25); /* Red */
+        --vp-danger-light: oklch(0.73 0.26 25);
+        --vp-danger-bg: oklch(0.96 0.05 25);
+
+        /* ============================================
+       SPACING SCALE (8px-based)
+       ============================================ */
+        --vp-spacing-xs: 0.25rem; /* 4px */
+        --vp-spacing-sm: 0.5rem; /* 8px */
+        --vp-spacing-md: 1rem; /* 16px */
+        --vp-spacing-lg: 1.5rem; /* 24px */
+        --vp-spacing-xl: 2rem; /* 32px */
+        --vp-spacing-2xl: 3rem; /* 48px */
+        --vp-spacing-3xl: 4rem; /* 64px */
+        --vp-spacing-4xl: 6rem; /* 96px */
+        --vp-spacing-5xl: 8rem; /* 128px */
+
+        /* ============================================
+       SHADOWS (Elevation System)
+       ============================================ */
+        --vp-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        --vp-shadow-md:
+            0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        --vp-shadow-lg:
+            0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        --vp-shadow-xl:
+            0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        --vp-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+        /* Colored shadows for CTAs */
+        --vp-shadow-primary: 0 10px 25px -5px oklch(0.65 0.18 162 / 0.3);
+        --vp-shadow-secondary: 0 10px 25px -5px oklch(0.63 0.25 252 / 0.3);
+
+        /* ============================================
+       OVERRIDE SHADCN PRIMARY/SECONDARY
+       Pour VaultPay branding
+       ============================================ */
+        --primary: var(--vp-primary);
+        --primary-foreground: var(--vp-primary-foreground);
+        --secondary: var(--vp-secondary);
+        --secondary-foreground: var(--vp-secondary-foreground);
+    }
+
+    /* ============================================
+     DARK THEME
+     ============================================ */
+    .dark {
+        --vp-primary: oklch(0.7 0.18 162);
+        --vp-primary-light: oklch(0.8 0.18 162);
+        --vp-primary-dark: oklch(0.6 0.18 162);
+
+        --vp-secondary: oklch(0.68 0.25 252);
+        --vp-secondary-light: oklch(0.78 0.25 252);
+        --vp-secondary-dark: oklch(0.58 0.25 252);
+
+        --vp-surface: oklch(0.1 0 0);
+        --vp-surface-elevated: oklch(0.13 0 0);
+        --vp-surface-sunken: oklch(0.05 0 0);
+
+        --vp-border-subtle: oklch(0.15 0 0);
+        --vp-border-strong: oklch(0.3 0 0);
+
+        --vp-text-tertiary: oklch(0.55 0 0);
+        --vp-text-disabled: oklch(0.35 0 0);
+
+        --vp-success-bg: oklch(0.15 0.05 145);
+        --vp-warning-bg: oklch(0.15 0.05 80);
+        --vp-danger-bg: oklch(0.15 0.05 25);
+
+        /* Override shadcn for dark */
+        --primary: var(--vp-primary);
+        --secondary: var(--vp-secondary);
+    }
+}
