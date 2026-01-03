@@ -45,10 +45,6 @@ export function Footer() {
     }
 
     const ctx = gsap.context(() => {
-      // ═══════════════════════════════════════════════════════
-      // TIMELINE ÉLÉGANTE - Signature professionnelle
-      // ═══════════════════════════════════════════════════════
-
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: footerRef.current,
@@ -57,18 +53,10 @@ export function Footer() {
         },
       });
 
-      // ═══════════════════════════════════════════════════════
-      // VAGUE 1 : IDENTITÉ (0-0.8s) - Logo + Nom
-      // ═══════════════════════════════════════════════════════
-
-      // 1.1 Logo apparaît avec rotation subtile
+      // Logo
       tl.fromTo(
         logoRef.current,
-        {
-          scale: 0,
-          opacity: 0,
-          rotation: -180,
-        },
+        { scale: 0, opacity: 0, rotation: -180 },
         {
           scale: 1,
           opacity: 1,
@@ -79,110 +67,56 @@ export function Footer() {
         0,
       );
 
-      // 1.2 Nom slide depuis la droite
+      // Name
       tl.fromTo(
         nameRef.current,
-        {
-          x: -20,
-          opacity: 0,
-        },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.6,
-          ease: "power3.out",
-        },
+        { x: -20, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
         0.3,
       );
 
-      // ═══════════════════════════════════════════════════════
-      // VAGUE 2 : CONTEXTUALISATION (0.8-1.8s)
-      // ═══════════════════════════════════════════════════════
-
-      // 2.1 Description fade up
+      // Description
       tl.fromTo(
         descriptionRef.current,
-        {
-          y: 20,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          ease: "power2.out",
-        },
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
         0.8,
       );
 
-      // 2.2 Status badge avec bounce
+      // Status
       tl.fromTo(
         statusRef.current,
-        {
-          y: 15,
-          opacity: 0,
-          scale: 0.9,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          duration: 0.5,
-          ease: "back.out(1.5)",
-        },
+        { y: 15, opacity: 0, scale: 0.9 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.5)" },
         1.2,
       );
 
-      // ═══════════════════════════════════════════════════════
-      // VAGUE 3 : LÉGAL (1.8-2.8s) - Bottom row
-      // ═══════════════════════════════════════════════════════
-
-      // 3.1 Divider grow (horizontal)
+      // Divider
       tl.fromTo(
         dividerRef.current,
-        {
-          scaleX: 0,
-        },
-        {
-          scaleX: 1,
-          duration: 0.6,
-          ease: "power2.out",
-        },
+        { scaleX: 0 },
+        { scaleX: 1, duration: 0.6, ease: "power2.out" },
         1.8,
       );
 
-      // 3.2 Copyright, Contact, License apparaissent en stagger
+      // Bottom elements
       const bottomElements = [
         copyrightRef.current,
         contactRef.current,
         licenseRef.current,
       ];
-
       bottomElements.forEach((el, index) => {
         if (!el) return;
-
         tl.fromTo(
           el,
-          {
-            y: 15,
-            opacity: 0,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.5,
-            ease: "power2.out",
-          },
-          2.2 + index * 0.12, // Stagger subtil
+          { y: 15, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
+          2.2 + index * 0.12,
         );
       });
 
-      // ═══════════════════════════════════════════════════════
-      // MICRO-INTERACTIONS - Hover effects (desktop)
-      // ═══════════════════════════════════════════════════════
-
+      // Hover effects
       if (window.innerWidth >= 768) {
-        // Logo hover (subtil scale)
         const logoContainer = logoRef.current?.parentElement;
         if (logoContainer) {
           logoContainer.addEventListener("mouseenter", () => {
@@ -193,7 +127,6 @@ export function Footer() {
               ease: "power2.out",
             });
           });
-
           logoContainer.addEventListener("mouseleave", () => {
             gsap.to(logoRef.current, {
               scale: 1,
@@ -204,7 +137,6 @@ export function Footer() {
           });
         }
 
-        // Contact email hover (underline grow)
         if (contactRef.current) {
           contactRef.current.addEventListener("mouseenter", () => {
             gsap.to(contactRef.current, {
@@ -213,7 +145,6 @@ export function Footer() {
               ease: "power2.out",
             });
           });
-
           contactRef.current.addEventListener("mouseleave", () => {
             gsap.to(contactRef.current, {
               scale: 1,
@@ -223,10 +154,8 @@ export function Footer() {
           });
         }
 
-        // License badge hover
         if (licenseRef.current) {
           const shieldIcon = licenseRef.current.querySelector("svg");
-
           licenseRef.current.addEventListener("mouseenter", () => {
             if (shieldIcon) {
               gsap.to(shieldIcon, {
@@ -236,7 +165,6 @@ export function Footer() {
               });
             }
           });
-
           licenseRef.current.addEventListener("mouseleave", () => {
             if (shieldIcon) {
               gsap.to(shieldIcon, {
@@ -254,7 +182,7 @@ export function Footer() {
   }, []);
 
   return (
-    <footer ref={footerRef} className="footer-section border-t border-gray-200">
+    <footer ref={footerRef} className="footer-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="max-w-6xl mx-auto">
           {/* Main Content - Centered */}
@@ -263,11 +191,27 @@ export function Footer() {
             <div className="flex items-center justify-center gap-2 mb-4">
               <div
                 ref={logoRef}
-                className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--vp-primary)] to-[var(--vp-secondary)] flex items-center justify-center"
+                className="w-10 h-10 rounded-xl flex items-center justify-center"
+                style={{ background: "var(--vp-gradient-brand)" }}
               >
-                <span className="text-white font-bold text-xl">V</span>
+                <span
+                  className="font-bold text-xl"
+                  style={{
+                    fontFamily: "var(--font-outfit)",
+                    color: "var(--vp-primary-foreground)",
+                  }}
+                >
+                  V
+                </span>
               </div>
-              <span ref={nameRef} className="text-gray-900 font-bold text-xl">
+              <span
+                ref={nameRef}
+                className="font-bold text-xl"
+                style={{
+                  fontFamily: "var(--font-outfit)",
+                  color: "var(--vp-text-primary)",
+                }}
+              >
                 VaultPay
               </span>
             </div>
@@ -275,7 +219,8 @@ export function Footer() {
             {/* Description */}
             <p
               ref={descriptionRef}
-              className="text-sm text-gray-600 mb-4 max-w-md mx-auto"
+              className="text-sm mb-4 max-w-md mx-auto"
+              style={{ color: "var(--vp-text-secondary)" }}
             >
               FINTRAC-licensed money transfers to Africa. Fast, secure, and
               affordable.
@@ -284,9 +229,13 @@ export function Footer() {
             {/* Pre-launch Status */}
             <div
               ref={statusRef}
-              className="inline-flex items-center gap-2 text-sm text-gray-600"
+              className="inline-flex items-center gap-2 text-sm"
+              style={{ color: "var(--vp-text-secondary)" }}
             >
-              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <div
+                className="w-2 h-2 rounded-full animate-pulse"
+                style={{ backgroundColor: "var(--vp-success)" }}
+              />
               <span>Launching March 2026</span>
             </div>
           </div>
@@ -294,12 +243,18 @@ export function Footer() {
           {/* Divider */}
           <div
             ref={dividerRef}
-            className="h-px bg-gray-200 mb-8"
-            style={{ transformOrigin: "center" }}
+            className="h-px mb-8"
+            style={{
+              backgroundColor: "var(--vp-border-default)",
+              transformOrigin: "center",
+            }}
           />
 
           {/* Bottom Row */}
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-600">
+          <div
+            className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm"
+            style={{ color: "var(--vp-text-secondary)" }}
+          >
             {/* Copyright */}
             <p ref={copyrightRef}>
               © {currentYear} VaultPay Inc. All rights reserved.
@@ -309,14 +264,24 @@ export function Footer() {
             <a
               ref={contactRef}
               href="mailto:hello@vaultpay.com"
-              className="hover:text-[var(--vp-primary)] transition-colors duration-200"
+              className="transition-colors duration-200"
+              style={{ color: "var(--vp-text-secondary)" }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = "var(--vp-primary)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = "var(--vp-text-secondary)";
+              }}
             >
               hello@vaultpay.com
             </a>
 
             {/* License */}
             <div ref={licenseRef} className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" />
+              <ShieldCheck
+                className="w-4 h-4"
+                style={{ color: "var(--vp-success)" }}
+              />
               <span>FINTRAC Licensed</span>
             </div>
           </div>

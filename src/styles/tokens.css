@@ -1,63 +1,132 @@
 /* ============================================
    VAULTPAY DESIGN SYSTEM - FOUNDATION TOKENS
-   Intégré avec shadcn/ui + Tailwind v4
+   Premium Dark Mode Ready
    ============================================ */
 
 @layer base {
     :root {
         /* ============================================
-       BRAND COLORS - VAULTPAY
-       ============================================ */
+           BRAND COLORS - VAULTPAY
+           ============================================ */
 
-        /* Primary - Emerald (remplace primary shadcn) */
-        --vp-primary: oklch(0.65 0.18 162); /* Emerald #10B981 */
-        --vp-primary-light: oklch(0.75 0.18 162);
-        --vp-primary-dark: oklch(0.5 0.18 162);
-        --vp-primary-foreground: oklch(1 0 0); /* White text */
+        /* Primary - Emerald */
+        --vp-primary: oklch(0.58 0.19 165);
+        --vp-primary-light: oklch(0.68 0.19 165);
+        --vp-primary-dark: oklch(0.48 0.19 165);
+        --vp-primary-foreground: oklch(1 0 0);
 
         /* Secondary - Blue */
-        --vp-secondary: oklch(0.63 0.25 252); /* Blue #3B82F6 */
-        --vp-secondary-light: oklch(0.73 0.25 252);
-        --vp-secondary-dark: oklch(0.53 0.25 252);
+        --vp-secondary: oklch(0.55 0.22 255);
+        --vp-secondary-light: oklch(0.65 0.22 255);
+        --vp-secondary-dark: oklch(0.45 0.22 255);
         --vp-secondary-foreground: oklch(1 0 0);
 
         /* ============================================
-       SURFACE COLORS
-       ============================================ */
-        --vp-surface: oklch(0.98 0 0); /* Off-white */
-        --vp-surface-elevated: oklch(1 0 0); /* Pure white */
-        --vp-surface-sunken: oklch(0.96 0 0); /* Light gray */
+           SURFACE COLORS
+           ============================================ */
+
+        /* Backgrounds */
+        --vp-bg-base: oklch(0.995 0.002 240); /* Off-white bleuté */
+        --vp-bg-subtle: oklch(0.97 0.004 240); /* Légèrement teinté */
+        --vp-bg-muted: oklch(0.94 0.006 240); /* Plus prononcé */
+
+        /* Cards & Elevated surfaces */
+        --vp-surface: oklch(1 0 0); /* Pure white */
+        --vp-surface-hover: oklch(0.99 0.002 240); /* Hover state */
+        --vp-surface-active: oklch(0.97 0.004 240); /* Active state */
 
         /* ============================================
-       BORDER COLORS
-       ============================================ */
-        --vp-border-subtle: oklch(0.95 0 0);
-        --vp-border-strong: oklch(0.8 0 0);
+           TEXT COLORS
+           ============================================ */
+        --vp-text-primary: oklch(0.15 0.01 240); /* Presque noir */
+        --vp-text-secondary: oklch(0.45 0.01 240); /* Gray moyen */
+        --vp-text-tertiary: oklch(0.6 0.005 240); /* Gray subtil */
+        --vp-text-disabled: oklch(0.75 0.003 240); /* Disabled */
+        --vp-text-inverse: oklch(1 0 0); /* Blanc sur dark BG */
 
         /* ============================================
-       TEXT COLORS (complémentaires)
-       ============================================ */
-        --vp-text-tertiary: oklch(0.64 0 0);
-        --vp-text-disabled: oklch(0.82 0 0);
+           BORDER COLORS
+           ============================================ */
+        --vp-border-subtle: oklch(0.9 0.005 240); /* Borders discrètes */
+        --vp-border-default: oklch(0.85 0.008 240); /* Borders standard */
+        --vp-border-strong: oklch(0.75 0.01 240); /* Borders prononcées */
+        --vp-border-focus: var(--vp-primary); /* Focus states */
 
         /* ============================================
-       SEMANTIC COLORS
-       ============================================ */
-        --vp-success: oklch(0.65 0.2 145); /* Green */
-        --vp-success-light: oklch(0.75 0.2 145);
-        --vp-success-bg: oklch(0.96 0.05 145);
+           SEMANTIC COLORS
+           ============================================ */
 
-        --vp-warning: oklch(0.7 0.18 80); /* Orange */
-        --vp-warning-light: oklch(0.8 0.18 80);
-        --vp-warning-bg: oklch(0.96 0.05 80);
+        /* Success */
+        --vp-success: oklch(0.6 0.2 145);
+        --vp-success-light: oklch(0.7 0.18 145);
+        --vp-success-bg: oklch(0.92 0.05 145);
+        --vp-success-fg: oklch(1 0 0);
 
-        --vp-danger: oklch(0.63 0.26 25); /* Red */
-        --vp-danger-light: oklch(0.73 0.26 25);
-        --vp-danger-bg: oklch(0.96 0.05 25);
+        /* Warning */
+        --vp-warning: oklch(0.65 0.18 80);
+        --vp-warning-light: oklch(0.75 0.16 80);
+        --vp-warning-bg: oklch(0.92 0.05 80);
+        --vp-warning-fg: oklch(0.15 0.01 240);
+
+        /* Danger */
+        --vp-danger: oklch(0.58 0.24 25);
+        --vp-danger-light: oklch(0.68 0.22 25);
+        --vp-danger-bg: oklch(0.92 0.05 25);
+        --vp-danger-fg: oklch(1 0 0);
+
+        /* Info */
+        --vp-info: oklch(0.6 0.2 240);
+        --vp-info-light: oklch(0.7 0.18 240);
+        --vp-info-bg: oklch(0.92 0.05 240);
+        --vp-info-fg: oklch(1 0 0);
 
         /* ============================================
-       SPACING SCALE (8px-based)
-       ============================================ */
+           GRADIENTS
+           ============================================ */
+        --vp-gradient-hero-start: oklch(0.99 0.02 165 / 0.15);
+        --vp-gradient-hero-mid: oklch(0.99 0.03 255 / 0.12);
+        --vp-gradient-hero-end: oklch(0.985 0.015 180 / 0.1);
+
+        --vp-gradient-primary: linear-gradient(
+            135deg,
+            var(--vp-primary),
+            var(--vp-primary-light)
+        );
+        --vp-gradient-secondary: linear-gradient(
+            135deg,
+            var(--vp-secondary),
+            var(--vp-secondary-light)
+        );
+        --vp-gradient-brand: linear-gradient(
+            135deg,
+            var(--vp-secondary),
+            var(--vp-primary)
+        );
+
+        /* ============================================
+           SHADOWS (Elevation System)
+           ============================================ */
+        --vp-shadow-xs: 0 1px 2px oklch(0 0 0 / 0.05);
+        --vp-shadow-sm:
+            0 2px 8px oklch(0 0 0 / 0.08), 0 1px 3px oklch(0 0 0 / 0.06);
+        --vp-shadow-md:
+            0 8px 24px oklch(0 0 0 / 0.12), 0 2px 8px oklch(0 0 0 / 0.08);
+        --vp-shadow-lg:
+            0 16px 48px oklch(0 0 0 / 0.16), 0 4px 16px oklch(0 0 0 / 0.12);
+        --vp-shadow-xl:
+            0 24px 64px oklch(0 0 0 / 0.2), 0 8px 24px oklch(0 0 0 / 0.16);
+
+        /* Colored shadows for CTAs */
+        --vp-shadow-primary:
+            0 0 32px oklch(0.58 0.19 165 / 0.3),
+            0 0 64px oklch(0.58 0.19 165 / 0.15);
+        --vp-shadow-secondary:
+            0 0 32px oklch(0.55 0.22 255 / 0.3),
+            0 0 64px oklch(0.55 0.22 255 / 0.15);
+
+        /* ============================================
+           SPACING SCALE (8px-based)
+           ============================================ */
         --vp-spacing-xs: 0.25rem; /* 4px */
         --vp-spacing-sm: 0.5rem; /* 8px */
         --vp-spacing-md: 1rem; /* 16px */
@@ -69,59 +138,149 @@
         --vp-spacing-5xl: 8rem; /* 128px */
 
         /* ============================================
-       SHADOWS (Elevation System)
-       ============================================ */
-        --vp-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-        --vp-shadow-md:
-            0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-        --vp-shadow-lg:
-            0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-        --vp-shadow-xl:
-            0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-        --vp-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-
-        /* Colored shadows for CTAs */
-        --vp-shadow-primary: 0 10px 25px -5px oklch(0.65 0.18 162 / 0.3);
-        --vp-shadow-secondary: 0 10px 25px -5px oklch(0.63 0.25 252 / 0.3);
+           RADIUS SCALE
+           ============================================ */
+        --vp-radius-sm: 0.375rem; /* 6px */
+        --vp-radius-md: 0.5rem; /* 8px */
+        --vp-radius-lg: 0.75rem; /* 12px */
+        --vp-radius-xl: 1rem; /* 16px */
+        --vp-radius-2xl: 1.5rem; /* 24px */
+        --vp-radius-full: 9999px;
 
         /* ============================================
-       OVERRIDE SHADCN PRIMARY/SECONDARY
-       Pour VaultPay branding
-       ============================================ */
+           TRANSITIONS
+           ============================================ */
+        --vp-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+        --vp-transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        --vp-transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+        --vp-transition-spring: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+        /* ============================================
+           BACKDROP EFFECTS
+           ============================================ */
+        --vp-backdrop-blur: blur(12px) saturate(120%);
+        --vp-backdrop-blur-strong: blur(16px) saturate(140%);
+
+        /* ============================================
+           OVERRIDE SHADCN TOKENS
+           ============================================ */
+        --background: var(--vp-bg-base);
+        --foreground: var(--vp-text-primary);
+        --card: var(--vp-surface);
+        --card-foreground: var(--vp-text-primary);
+        --popover: var(--vp-surface);
+        --popover-foreground: var(--vp-text-primary);
         --primary: var(--vp-primary);
         --primary-foreground: var(--vp-primary-foreground);
         --secondary: var(--vp-secondary);
         --secondary-foreground: var(--vp-secondary-foreground);
+        --muted: var(--vp-bg-muted);
+        --muted-foreground: var(--vp-text-secondary);
+        --accent: var(--vp-bg-subtle);
+        --accent-foreground: var(--vp-text-primary);
+        --destructive: var(--vp-danger);
+        --destructive-foreground: var(--vp-danger-fg);
+        --border: var(--vp-border-default);
+        --input: var(--vp-border-default);
+        --ring: var(--vp-border-focus);
     }
 
     /* ============================================
-     DARK THEME
-     ============================================ */
+       DARK MODE
+       ============================================ */
     .dark {
-        --vp-primary: oklch(0.7 0.18 162);
-        --vp-primary-light: oklch(0.8 0.18 162);
-        --vp-primary-dark: oklch(0.6 0.18 162);
+        /* Brand colors - Plus lumineux */
+        --vp-primary: oklch(0.68 0.18 165);
+        --vp-primary-light: oklch(0.78 0.18 165);
+        --vp-primary-dark: oklch(0.58 0.18 165);
+        --vp-primary-foreground: oklch(1 0 0);
 
-        --vp-secondary: oklch(0.68 0.25 252);
-        --vp-secondary-light: oklch(0.78 0.25 252);
-        --vp-secondary-dark: oklch(0.58 0.25 252);
+        --vp-secondary: oklch(0.65 0.2 255);
+        --vp-secondary-light: oklch(0.75 0.2 255);
+        --vp-secondary-dark: oklch(0.55 0.2 255);
+        --vp-secondary-foreground: oklch(1 0 0);
 
-        --vp-surface: oklch(0.1 0 0);
-        --vp-surface-elevated: oklch(0.13 0 0);
-        --vp-surface-sunken: oklch(0.05 0 0);
+        /* Backgrounds - Rich dark */
+        --vp-bg-base: oklch(0.12 0.01 240);
+        --vp-bg-subtle: oklch(0.15 0.012 240);
+        --vp-bg-muted: oklch(0.18 0.014 240);
 
-        --vp-border-subtle: oklch(0.15 0 0);
-        --vp-border-strong: oklch(0.3 0 0);
+        /* Surfaces avec profondeur */
+        --vp-surface: oklch(0.16 0.012 240);
+        --vp-surface-hover: oklch(0.18 0.014 240);
+        --vp-surface-active: oklch(0.2 0.016 240);
 
-        --vp-text-tertiary: oklch(0.55 0 0);
-        --vp-text-disabled: oklch(0.35 0 0);
+        /* Text colors */
+        --vp-text-primary: oklch(0.95 0.005 240);
+        --vp-text-secondary: oklch(0.7 0.01 240);
+        --vp-text-tertiary: oklch(0.55 0.008 240);
+        --vp-text-disabled: oklch(0.4 0.006 240);
+        --vp-text-inverse: oklch(0.15 0.01 240);
 
-        --vp-success-bg: oklch(0.15 0.05 145);
-        --vp-warning-bg: oklch(0.15 0.05 80);
-        --vp-danger-bg: oklch(0.15 0.05 25);
+        /* Borders - Lumineux avec transparence */
+        --vp-border-subtle: oklch(0.25 0.015 240 / 0.4);
+        --vp-border-default: oklch(0.3 0.018 240 / 0.6);
+        --vp-border-strong: oklch(0.4 0.02 240);
+        --vp-border-focus: var(--vp-primary);
 
-        /* Override shadcn for dark */
-        --primary: var(--vp-primary);
-        --secondary: var(--vp-secondary);
+        /* Semantic colors - Ajustés pour dark */
+        --vp-success: oklch(0.68 0.18 145);
+        --vp-success-light: oklch(0.78 0.16 145);
+        --vp-success-bg: oklch(0.22 0.05 145 / 0.3);
+        --vp-success-fg: oklch(1 0 0);
+
+        --vp-warning: oklch(0.72 0.16 80);
+        --vp-warning-light: oklch(0.82 0.14 80);
+        --vp-warning-bg: oklch(0.22 0.05 80 / 0.3);
+        --vp-warning-fg: oklch(1 0 0);
+
+        --vp-danger: oklch(0.68 0.22 25);
+        --vp-danger-light: oklch(0.78 0.2 25);
+        --vp-danger-bg: oklch(0.22 0.05 25 / 0.3);
+        --vp-danger-fg: oklch(1 0 0);
+
+        --vp-info: oklch(0.68 0.18 240);
+        --vp-info-light: oklch(0.78 0.16 240);
+        --vp-info-bg: oklch(0.22 0.05 240 / 0.3);
+        --vp-info-fg: oklch(1 0 0);
+
+        /* Gradients dark */
+        --vp-gradient-hero-start: oklch(0.2 0.02 165 / 0.15);
+        --vp-gradient-hero-mid: oklch(0.2 0.03 255 / 0.12);
+        --vp-gradient-hero-end: oklch(0.18 0.015 180 / 0.1);
+
+        /* Shadows - Plus intenses */
+        --vp-shadow-xs: 0 1px 2px oklch(0 0 0 / 0.3);
+        --vp-shadow-sm:
+            0 2px 8px oklch(0 0 0 / 0.4), 0 1px 3px oklch(0 0 0 / 0.3);
+        --vp-shadow-md:
+            0 8px 24px oklch(0 0 0 / 0.5), 0 2px 8px oklch(0 0 0 / 0.4);
+        --vp-shadow-lg:
+            0 16px 48px oklch(0 0 0 / 0.6), 0 4px 16px oklch(0 0 0 / 0.5);
+        --vp-shadow-xl:
+            0 24px 64px oklch(0 0 0 / 0.7), 0 8px 24px oklch(0 0 0 / 0.6);
+
+        --vp-shadow-primary:
+            0 0 32px oklch(0.68 0.18 165 / 0.4),
+            0 0 64px oklch(0.68 0.18 165 / 0.2);
+        --vp-shadow-secondary:
+            0 0 32px oklch(0.65 0.2 255 / 0.4),
+            0 0 64px oklch(0.65 0.2 255 / 0.2);
+
+        /* Backdrop effects */
+        --vp-backdrop-blur: blur(16px) saturate(140%);
+        --vp-backdrop-blur-strong: blur(24px) saturate(160%);
+
+        /* Override shadcn */
+        --background: var(--vp-bg-base);
+        --foreground: var(--vp-text-primary);
+        --card: var(--vp-surface);
+        --card-foreground: var(--vp-text-primary);
+        --popover: var(--vp-surface);
+        --popover-foreground: var(--vp-text-primary);
+        --muted: var(--vp-bg-muted);
+        --muted-foreground: var(--vp-text-secondary);
+        --accent: var(--vp-bg-subtle);
+        --accent-foreground: var(--vp-text-primary);
     }
 }

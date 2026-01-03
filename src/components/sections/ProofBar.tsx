@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useRef } from "react";
 import { TrendingUp, Users, Globe2, ShieldCheck } from "lucide-react";
 import gsap from "gsap";
@@ -34,7 +35,7 @@ const stats = [
   {
     icon: ShieldCheck,
     value: "FINTRAC",
-    numericValue: null, // Pas de counter pour texte
+    numericValue: null,
     label: "Licensed & regulated",
   },
 ];
@@ -47,15 +48,6 @@ export function ProofBar() {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 70%",
-          end: "top 30%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
       statsRefs.current.forEach((stat, index) => {
         if (!stat) return;
 
@@ -66,30 +58,39 @@ export function ProofBar() {
 
         if (!icon || !valueEl || !label) return;
 
-        tl.from(
-          icon,
-          {
-            scale: 0,
-            opacity: 0,
-            duration: 0.5,
-            ease: "back.out(1.7)",
+        // Timeline dédiée à cet élément
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: stat,
+            start: "top 70%",
+            toggleActions: "play none none reverse",
           },
-          index * 0.15,
-        ).from(
-          valueEl,
-          {
-            opacity: 0,
-            y: 20,
-            duration: 0.4,
-            ease: "power2.out",
-          },
-          "-=0.2",
-        );
+        });
 
+        // Icon
+        tl.from(icon, {
+          scale: 0,
+          opacity: 0,
+          duration: 0.5,
+          ease: "back.out(1.7)",
+        })
+          // Value
+          .from(
+            valueEl,
+            { opacity: 0, y: 20, duration: 0.4, ease: "power2.out" },
+            "-=0.2",
+          )
+          // Label
+          .from(
+            label,
+            { opacity: 0, y: 10, duration: 0.3, ease: "power2.out" },
+            "-=0.3",
+          );
+
+        // Counter only if numericValue exists
         const statData = stats[index];
         if (statData.numericValue !== null) {
           const obj = { val: 0 };
-
           gsap.to(obj, {
             val: statData.numericValue,
             duration: 1.5,
@@ -104,82 +105,20 @@ export function ProofBar() {
                 statData.numericValue >= 1000
                   ? Math.floor(obj.val).toLocaleString()
                   : Math.floor(obj.val);
-
               valueEl.textContent = `${statData.prefix ?? ""}${formatted}${statData.suffix ?? ""}`;
             },
           });
         }
 
-        tl.from(
-          label,
-          {
-            opacity: 0,
-            y: 10,
-            duration: 0.3,
-            ease: "power2.out",
-          },
-          "-=0.3",
-        );
-
+        // Divider
         if (divider) {
           tl.from(
             divider,
-            {
-              height: 0,
-              opacity: 0,
-              duration: 0.4,
-              ease: "power2.out",
-            },
+            { height: 0, opacity: 0, duration: 0.4, ease: "power2.out" },
             "-=0.4",
           );
         }
       });
-
-      // Hover interactions (desktop only)
-      if (window.innerWidth >= 768) {
-        statsRefs.current.forEach((stat) => {
-          if (!stat) return;
-
-          const icon = stat.querySelector<HTMLElement>(".stat-icon-wrapper");
-          if (!icon) return;
-
-          const onEnter = () => {
-            gsap.to(icon, {
-              scale: 1.1,
-              rotate: 5,
-              duration: 0.3,
-              ease: "power2.out",
-            });
-            gsap.to(stat, {
-              y: -5,
-              duration: 0.3,
-              ease: "power2.out",
-            });
-          };
-
-          const onLeave = () => {
-            gsap.to(icon, {
-              scale: 1,
-              rotate: 0,
-              duration: 0.3,
-              ease: "power2.in",
-            });
-            gsap.to(stat, {
-              y: 0,
-              duration: 0.3,
-              ease: "power2.in",
-            });
-          };
-
-          stat.addEventListener("mouseenter", onEnter);
-          stat.addEventListener("mouseleave", onLeave);
-
-          ScrollTrigger.addEventListener("refresh", () => {
-            stat.removeEventListener("mouseenter", onEnter);
-            stat.removeEventListener("mouseleave", onLeave);
-          });
-        });
-      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -188,10 +127,10 @@ export function ProofBar() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-12 md:py-16 bg-white border-y border-gray-200"
+      className="proofbar-section relative py-8 md:py-10"
     >
-      <div className="vp-container proofbar-section">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-6 md:py-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             const isLast = index === stats.length - 1;
@@ -199,30 +138,63 @@ export function ProofBar() {
               <div
                 key={index}
                 ref={(el) => {
-                  statsRefs.current[index] = el;
+                  statsRefs.current[index] = el; // assignation
                 }}
                 className="relative group text-center"
               >
                 {/* Icon */}
                 <div className="flex justify-center mb-3">
-                  <div className="stat-icon-wrapper w-12 h-12 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center group-hover:bg-gray-100 transition-colors duration-200">
-                    <Icon className="w-6 h-6 text-[var(--vp-primary)]" />
+                  <div
+                    className="stat-icon-wrapper w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-200"
+                    style={{
+                      backgroundColor: "var(--vp-bg-subtle)",
+                      border: "1px solid var(--vp-border-subtle)",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor =
+                        "var(--vp-bg-muted)";
+                      e.currentTarget.style.borderColor =
+                        "var(--vp-border-default)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor =
+                        "var(--vp-bg-subtle)";
+                      e.currentTarget.style.borderColor =
+                        "var(--vp-border-subtle)";
+                    }}
+                  >
+                    <Icon
+                      className="w-6 h-6"
+                      style={{ color: "var(--vp-primary)" }}
+                    />
                   </div>
                 </div>
 
                 {/* Value */}
-                <div className="stat-value vp-h2 font-bold text-foreground mb-1">
+                <div
+                  className="stat-value text-3xl md:text-4xl font-bold mb-1"
+                  style={{
+                    fontFamily: "var(--font-outfit)",
+                    color: "var(--vp-text-primary)",
+                  }}
+                >
                   {stat.value}
                 </div>
 
                 {/* Label */}
-                <p className="stat-label vp-body-sm text-muted-foreground">
+                <p
+                  className="stat-label text-sm"
+                  style={{ color: "var(--vp-text-secondary)" }}
+                >
                   {stat.label}
                 </p>
 
-                {/* Vertical Divider - Desktop only, not on last item */}
+                {/* Vertical Divider - Desktop only, pas sur le dernier */}
                 {!isLast && (
-                  <div className="stat-divider hidden md:block absolute top-1/2 right-0 w-px h-16 bg-gray-200 -translate-y-1/2" />
+                  <div
+                    className="stat-divider hidden md:block absolute top-1/2 right-0 w-px h-16 -translate-y-1/2"
+                    style={{ backgroundColor: "var(--vp-border-subtle)" }}
+                  />
                 )}
               </div>
             );

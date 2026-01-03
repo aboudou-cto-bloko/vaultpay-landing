@@ -21,7 +21,6 @@ export function HeroSection() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Animation du bouton lors de la soumission
     gsap.to(buttonRef.current, {
       scale: 0.95,
       duration: 0.1,
@@ -34,7 +33,6 @@ export function HeroSection() {
       setIsSubmitting(false);
       console.log("Email submitted:", email);
 
-      // Success micro-animation
       gsap.fromTo(
         formRef.current,
         { scale: 1 },
@@ -70,61 +68,28 @@ export function HeroSection() {
       return;
     }
 
-    // TIMELINE NARRATIVE OPTIMISÉE
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-    // ═══════════════════════════════════════════════════════
-    // ACTE 1 : L'ACCROCHE (0-0.8s)
-    // ═══════════════════════════════════════════════════════
-
-    // 1.1 Badge - BURST entrance
+    // Badge entrance
     tl.fromTo(
       badgeRef.current,
-      {
-        opacity: 0,
-        scale: 0.5,
-        y: -20,
-      },
-      {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "back.out(2.5)",
-      },
-      0, // Start at 0s
+      { opacity: 0, scale: 0.5, y: -20 },
+      { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "back.out(2.5)" },
+      0,
     );
 
-    // 1.2 Headline (partie fixe) - SNAP entrance
+    // Headline
     tl.fromTo(
       headlineRef.current,
-      {
-        opacity: 0,
-        y: 40,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        ease: "power4.out",
-      },
-      0.25, // Overlap avec badge
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 0.7, ease: "power4.out" },
+      0.25,
     );
 
-    // PAUSE NARRATIVE (0.2s) - Le visiteur lit "Send Money to Africa"
-
-    // ═══════════════════════════════════════════════════════
-    // ACTE 2 : LA RÉVÉLATION (0.8-1.6s)
-    // ═══════════════════════════════════════════════════════
-
-    // 2.1 Gradient - EXPLOSION de la promesse de valeur
+    // Gradient explosion
     tl.fromTo(
       gradientRef.current,
-      {
-        opacity: 0,
-        scale: 0.7,
-        filter: "blur(30px)",
-      },
+      { opacity: 0, scale: 0.7, filter: "blur(30px)" },
       {
         opacity: 1,
         scale: 1,
@@ -132,112 +97,59 @@ export function HeroSection() {
         duration: 1,
         ease: "expo.out",
       },
-      0.8, // Après la pause
+      0.8,
     );
 
-    // 2.2 Double pulse sur le gradient (souligne l'économie)
+    // Double pulse
     tl.to(
       gradientRef.current,
-      {
-        scale: 1.03,
-        duration: 0.4,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: 2, // 2 pulses seulement, puis stop
-      },
+      { scale: 1.03, duration: 0.4, ease: "sine.inOut", yoyo: true, repeat: 2 },
       1.3,
     );
 
-    // 2.3 Subheadline - CONTEXTUALISATION
+    // Subheadline
     tl.fromTo(
       subheadlineRef.current,
-      {
-        opacity: 0,
-        y: 20,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power2.out",
-      },
-      1.4, // Pendant le pulse
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
+      1.4,
     );
 
-    // PAUSE NARRATIVE (0.3s) - Absorption du message complet
-
-    // ═══════════════════════════════════════════════════════
-    // ACTE 3 : LA RÉASSURANCE → ACTION (2.3-3.5s)
-    // ═══════════════════════════════════════════════════════
-
-    // 3.1 Social Proof AVANT le form (réassure d'abord)
+    // Social proof
     tl.fromTo(
       socialProofRef.current,
-      {
-        opacity: 0,
-        y: 30,
-        scale: 0.9,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.6,
-        ease: "back.out(1.5)",
-      },
+      { opacity: 0, y: 30, scale: 0.9 },
+      { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.5)" },
       2.3,
     );
 
-    // 3.2 Form - APPEL À L'ACTION (maintenant qu'on est rassuré)
+    // Form
     tl.fromTo(
       formRef.current,
-      {
-        opacity: 0,
-        y: 30,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power3.out",
-      },
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
       2.7,
     );
 
-    // 3.3 Scroll Hint - INVITATION subtile à découvrir la suite
+    // Scroll hint
     tl.fromTo(
       scrollHintRef.current,
-      {
-        opacity: 0,
-        y: -20,
-      },
-      {
-        opacity: 0.6,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out",
-      },
+      { opacity: 0, y: -20 },
+      { opacity: 0.6, y: 0, duration: 0.8, ease: "power2.out" },
       3.2,
     );
 
-    // 3.4 Scroll Hint - BOUNCE infini (invite à scroller)
     tl.to(
       scrollHintRef.current,
-      {
-        y: 8,
-        duration: 1,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-      },
+      { y: 8, duration: 1, ease: "sine.inOut", repeat: -1, yoyo: true },
       3.8,
     );
   }, []);
 
-  // Magnetic CTA Button (interaction premium)
+  // Magnetic CTA Button
   useEffect(() => {
     const button = buttonRef.current;
-    if (!button || window.innerWidth < 768) return; // Desktop only
+    if (!button || window.innerWidth < 768) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = button.getBoundingClientRect();
@@ -276,23 +188,37 @@ export function HeroSection() {
         <div className="max-w-5xl mx-auto text-center">
           {/* Badge */}
           <div ref={badgeRef} style={{ opacity: 0 }}>
-            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 border-2 border-[var(--vp-primary)] bg-white text-[var(--vp-primary)] font-medium rounded-full shadow-sm">
-              <Zap className="w-3.5 h-3.5 fill-current" />
-              <span className="text-sm">Launching March 2026</span>
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full glass-card">
+              <Zap
+                className="w-3.5 h-3.5 fill-current"
+                style={{ color: "var(--vp-primary)" }}
+              />
+              <span
+                className="text-sm font-medium"
+                style={{ color: "var(--vp-primary)" }}
+              >
+                Launching March 2026
+              </span>
             </div>
           </div>
 
           {/* Headline avec gradient intégré */}
           <h1
             ref={headlineRef}
-            style={{ opacity: 0 }}
-            className="text-5xl md:text-7xl font-bold mb-6 text-gray-900 max-w-4xl mx-auto leading-tight"
+            style={{ opacity: 0, color: "var(--vp-text-primary)" }}
+            className="text-5xl md:text-7xl font-bold mb-6 max-w-4xl mx-auto leading-tight"
           >
             Send Money to Africa.{" "}
             <span
               ref={gradientRef}
-              style={{ opacity: 0 }}
-              className="inline-block bg-gradient-to-r from-blue-600 to-emerald-500 bg-clip-text text-transparent"
+              style={{
+                opacity: 0,
+                background: "var(--vp-gradient-brand)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+              className="inline-block"
             >
               Save $1,000+/Year.
             </span>
@@ -301,39 +227,58 @@ export function HeroSection() {
           {/* Subheadline */}
           <p
             ref={subheadlineRef}
-            style={{ opacity: 0 }}
-            className="text-xl md:text-2xl text-gray-600 mb-12 max-w-2xl mx-auto font-normal"
+            style={{ opacity: 0, color: "var(--vp-text-secondary)" }}
+            className="text-xl md:text-2xl mb-12 max-w-2xl mx-auto font-normal"
           >
             FINTRAC-licensed transfers in under 60 seconds. Pay $7.50, not $45.
           </p>
 
-          {/* Social Proof (apparaît AVANT le form) */}
+          {/* Social Proof */}
           <div ref={socialProofRef} style={{ opacity: 0 }} className="mb-8">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <div className="flex items-center gap-2 bg-white border border-gray-200 rounded-full px-5 py-2.5 shadow-sm">
+              <div
+                className="flex items-center gap-2 rounded-full px-5 py-2.5 glass-card"
+                style={{ border: `1px solid var(--vp-border-subtle)` }}
+              >
                 <div className="flex -space-x-2">
                   {[1, 2, 3].map((i) => (
                     <div
                       key={i}
-                      className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-100 to-blue-100 border-2 border-white"
+                      className="w-8 h-8 rounded-full border-2"
+                      style={{
+                        background: "var(--vp-gradient-primary)",
+                        borderColor: "var(--vp-surface)",
+                      }}
                     />
                   ))}
                 </div>
-                <span className="text-sm font-semibold text-gray-900">
+                <span
+                  className="text-sm font-semibold"
+                  style={{ color: "var(--vp-text-primary)" }}
+                >
                   8,200+ people waiting
                 </span>
               </div>
 
-              <div className="hidden sm:block w-px h-6 bg-gray-300" />
+              <div
+                className="hidden sm:block w-px h-6"
+                style={{ backgroundColor: "var(--vp-border-default)" }}
+              />
 
-              <div className="hidden sm:flex items-center gap-1.5 text-sm text-gray-600">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+              <div
+                className="hidden sm:flex items-center gap-1.5 text-sm"
+                style={{ color: "var(--vp-text-secondary)" }}
+              >
+                <CheckCircle2
+                  className="w-4 h-4"
+                  style={{ color: "var(--vp-success)" }}
+                />
                 <span className="font-medium">FINTRAC Licensed</span>
               </div>
             </div>
           </div>
 
-          {/* Form (apparaît APRÈS la réassurance) */}
+          {/* Form */}
           <div ref={formRef} style={{ opacity: 0 }}>
             <div className="max-w-lg mx-auto mb-12">
               <div className="flex flex-col sm:flex-row gap-3">
@@ -348,33 +293,58 @@ export function HeroSection() {
                     h-14
                     px-5
                     text-base
-                    bg-white
-                    border-2 border-gray-300
-                    focus:border-blue-500
-                    focus:ring-2 focus:ring-blue-200
                     rounded-xl
                     transition-all
-                    duration-200
                     outline-none
                   "
+                  style={{
+                    backgroundColor: "var(--vp-surface)",
+                    color: "var(--vp-text-primary)",
+                    border: `2px solid var(--vp-border-default)`,
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = "var(--vp-primary)";
+                    e.target.style.boxShadow = "0 0 0 3px var(--vp-primary)";
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = "var(--vp-border-default)";
+                    e.target.style.boxShadow = "none";
+                  }}
                 />
 
                 <button
                   ref={buttonRef}
                   onClick={handleSubmit}
                   disabled={isSubmitting}
-                  className="bg-[var(--vp-primary)] hover:bg-[var(--vp-primary-dark)] text-white font-semibold d h-14 px-10 rounded-xl text-base whitespace-nowrap transition-all duration-200 hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="h-14 px-10 rounded-xl text-base font-semibold whitespace-nowrap transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+                  style={{
+                    backgroundColor: "var(--vp-primary)",
+                    color: "var(--vp-primary-foreground)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor =
+                      "var(--vp-primary-light)";
+                    e.currentTarget.style.boxShadow =
+                      "var(--vp-shadow-lg), var(--vp-shadow-primary)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = "var(--vp-primary)";
+                    e.currentTarget.style.boxShadow = "none";
+                  }}
                 >
                   {isSubmitting ? "Joining..." : "Join Waitlist"}
                 </button>
               </div>
-              <p className="text-xs text-gray-500 text-center mt-3">
+              <p
+                className="text-xs text-center mt-3"
+                style={{ color: "var(--vp-text-tertiary)" }}
+              >
                 Free to join. No credit card required.
               </p>
             </div>
           </div>
 
-          {/* Scroll Hint - Invite à découvrir la suite */}
+          {/* Scroll Hint */}
           <div
             ref={scrollHintRef}
             style={{ opacity: 0 }}
@@ -386,11 +356,20 @@ export function HeroSection() {
               })
             }
           >
-            <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">
+            <span
+              className="text-xs font-medium uppercase tracking-wider"
+              style={{ color: "var(--vp-text-tertiary)" }}
+            >
               Discover how
             </span>
-            <div className="w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center">
-              <ChevronDown className="w-5 h-5 text-gray-400" />
+            <div
+              className="w-10 h-10 rounded-full flex items-center justify-center"
+              style={{ border: `2px solid var(--vp-border-default)` }}
+            >
+              <ChevronDown
+                className="w-5 h-5"
+                style={{ color: "var(--vp-text-tertiary)" }}
+              />
             </div>
           </div>
         </div>

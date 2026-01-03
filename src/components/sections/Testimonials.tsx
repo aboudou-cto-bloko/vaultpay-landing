@@ -48,7 +48,6 @@ export function Testimonials() {
   const sectionRef = useRef<HTMLElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Refs pour animations
   const headerRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const sublineRef = useRef<HTMLParagraphElement>(null);
@@ -102,7 +101,7 @@ export function Testimonials() {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      // 🎬 HEADER ANIMATION
+      // Header animation
       if (headlineRef.current && sublineRef.current) {
         const headerTl = gsap.timeline({
           scrollTrigger: {
@@ -112,46 +111,25 @@ export function Testimonials() {
           },
         });
 
-        // Headline fade + slide up
         headerTl.fromTo(
           headlineRef.current,
-          {
-            opacity: 0,
-            y: 30,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-            ease: "power3.out",
-          },
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
         );
 
-        // Subline fade + slide up
         headerTl.fromTo(
           sublineRef.current,
-          {
-            opacity: 0,
-            y: 20,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            ease: "power3.out",
-          },
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
           "-=0.4",
         );
       }
 
-      // 🎬 DOTS ANIMATION (entrance)
+      // Dots animation
       if (dotsRef.current) {
         gsap.fromTo(
           dotsRef.current.children,
-          {
-            scale: 0,
-            opacity: 0,
-          },
+          { scale: 0, opacity: 0 },
           {
             scale: 1,
             opacity: 1,
@@ -166,14 +144,11 @@ export function Testimonials() {
         );
       }
 
-      // 🎬 SOCIAL PROOF ANIMATION
+      // Social proof animation
       if (socialProofRef.current) {
         gsap.fromTo(
           socialProofRef.current,
-          {
-            opacity: 0,
-            y: 20,
-          },
+          { opacity: 0, y: 20 },
           {
             opacity: 1,
             y: 0,
@@ -191,7 +166,7 @@ export function Testimonials() {
     return () => ctx.revert();
   }, []);
 
-  // 🎬 CARD TRANSITION ANIMATION (on index change)
+  // Card transition animation
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
@@ -209,31 +184,15 @@ export function Testimonials() {
 
     const tl = gsap.timeline();
 
-    // Card entrance
     tl.fromTo(
       currentCard,
-      {
-        opacity: 0,
-        x: 100,
-        scale: 0.95,
-      },
-      {
-        opacity: 1,
-        x: 0,
-        scale: 1,
-        duration: 0.6,
-        ease: "power3.out",
-      },
+      { opacity: 0, x: 100, scale: 0.95 },
+      { opacity: 1, x: 0, scale: 1, duration: 0.6, ease: "power3.out" },
     );
 
-    // Stars cascade
     tl.fromTo(
       stars,
-      {
-        scale: 0,
-        rotation: -180,
-        opacity: 0,
-      },
+      { scale: 0, rotation: -180, opacity: 0 },
       {
         scale: 1,
         rotation: 0,
@@ -245,56 +204,29 @@ export function Testimonials() {
       "-=0.3",
     );
 
-    // Quote reveal
     tl.fromTo(
       quote,
-      {
-        opacity: 0,
-        y: 20,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        ease: "power3.out",
-      },
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
       "-=0.2",
     );
 
-    // Avatar bounce
     tl.fromTo(
       avatar,
-      {
-        scale: 0,
-        opacity: 0,
-      },
-      {
-        scale: 1,
-        opacity: 1,
-        duration: 0.5,
-        ease: "back.out(2.5)",
-      },
+      { scale: 0, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2.5)" },
       "-=0.4",
     );
 
-    // Author info fade
     tl.fromTo(
       authorInfo,
-      {
-        opacity: 0,
-        y: 10,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        ease: "power3.out",
-      },
+      { opacity: 0, y: 10 },
+      { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
       "-=0.3",
     );
   }, [currentIndex]);
 
-  // 🎬 ACTIVE DOT PULSE
+  // Active dot pulse
   useEffect(() => {
     if (!dotsRef.current) return;
 
@@ -304,33 +236,39 @@ export function Testimonials() {
     gsap.fromTo(
       activeDot,
       { scale: 1 },
-      {
-        scale: 1.2,
-        duration: 0.3,
-        ease: "back.out(3)",
-        yoyo: true,
-        repeat: 1,
-      },
+      { scale: 1.2, duration: 0.3, ease: "back.out(3)", yoyo: true, repeat: 1 },
     );
   }, [currentIndex]);
 
   return (
-    <section id="testimonials" ref={sectionRef} className="vp-section bg-white">
-      <div className="vp-container">
+    <section
+      id="testimonials"
+      ref={sectionRef}
+      className="py-20 md:py-24"
+      style={{ backgroundColor: "var(--vp-bg-base)" }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          {/* Section Header - ANIMATED */}
+          {/* Section Header */}
           <div ref={headerRef} className="text-center mb-12">
             <h2
               ref={headlineRef}
-              className="vp-h1 mb-3 text-foreground"
-              style={{ opacity: 0 }}
+              className="text-4xl md:text-5xl font-bold mb-3"
+              style={{
+                opacity: 0,
+                fontFamily: "var(--font-outfit)",
+                color: "var(--vp-text-primary)",
+              }}
             >
               Trusted by Thousands
             </h2>
             <p
               ref={sublineRef}
-              className="vp-body text-muted-foreground"
-              style={{ opacity: 0 }}
+              className="text-lg"
+              style={{
+                opacity: 0,
+                color: "var(--vp-text-secondary)",
+              }}
             >
               Real people, real savings.
             </p>
@@ -353,42 +291,77 @@ export function Testimonials() {
                       cardsRef.current[idx] = el;
                     }}
                   >
-                    <div className="bg-white border border-gray-200 rounded-2xl p-8 md:p-10 mx-2">
-                      {/* Stars Rating - ANIMATED */}
+                    <div
+                      className="rounded-2xl p-8 md:p-10 mx-2"
+                      style={{
+                        backgroundColor: "var(--vp-surface)",
+                        border: "1px solid var(--vp-border-default)",
+                        boxShadow: "var(--vp-shadow-md)",
+                      }}
+                    >
+                      {/* Stars Rating */}
                       <div className="flex gap-1 mb-6 justify-center">
                         {[...Array(testimonial.rating)].map((_, i) => (
                           <Star
                             key={i}
-                            className="star w-5 h-5 fill-yellow-400 text-yellow-400"
+                            className="star w-5 h-5"
+                            style={{
+                              fill: "var(--vp-warning)",
+                              color: "var(--vp-warning)",
+                            }}
                           />
                         ))}
                       </div>
 
-                      {/* Quote Text - ANIMATED */}
+                      {/* Quote Text */}
                       <blockquote className="quote text-center mb-8">
-                        <p className="vp-h4 text-foreground leading-relaxed font-normal">
+                        <p
+                          className="text-xl leading-relaxed font-normal"
+                          style={{ color: "var(--vp-text-primary)" }}
+                        >
                           &quot;{testimonial.quote}&quot;
                         </p>
                       </blockquote>
 
-                      {/* Author Info - ANIMATED */}
+                      {/* Author Info */}
                       <div className="flex flex-col items-center">
                         {/* Avatar */}
-                        <div className="avatar w-14 h-14 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center mb-3">
-                          <span className="text-base font-semibold text-muted-foreground">
+                        <div
+                          className="avatar w-14 h-14 rounded-full flex items-center justify-center mb-3"
+                          style={{
+                            backgroundColor: "var(--vp-bg-subtle)",
+                            border: "1px solid var(--vp-border-subtle)",
+                          }}
+                        >
+                          <span
+                            className="text-base font-semibold"
+                            style={{
+                              fontFamily: "var(--font-outfit)",
+                              color: "var(--vp-text-secondary)",
+                            }}
+                          >
                             {testimonial.initials}
                           </span>
                         </div>
 
                         {/* Name & Details */}
                         <div className="author-info text-center">
-                          <div className="font-semibold text-foreground mb-0.5">
+                          <div
+                            className="font-semibold mb-0.5"
+                            style={{ color: "var(--vp-text-primary)" }}
+                          >
                             {testimonial.name}
                           </div>
-                          <div className="text-sm text-muted-foreground">
+                          <div
+                            className="text-sm"
+                            style={{ color: "var(--vp-text-secondary)" }}
+                          >
                             {testimonial.role}
                           </div>
-                          <div className="text-sm text-muted-foreground">
+                          <div
+                            className="text-sm"
+                            style={{ color: "var(--vp-text-tertiary)" }}
+                          >
                             {testimonial.location}
                           </div>
                         </div>
@@ -400,7 +373,7 @@ export function Testimonials() {
             </div>
           </div>
 
-          {/* Navigation Dots - ANIMATED */}
+          {/* Navigation Dots */}
           <div
             ref={dotsRef}
             className="flex items-center justify-center gap-2 mt-8"
@@ -408,24 +381,33 @@ export function Testimonials() {
             {testimonials.map((_, index) => (
               <div
                 key={index}
-                className={`h-2 rounded-full transition-all duration-500 ${
-                  index === currentIndex
-                    ? "w-8 bg-[var(--vp-primary)]"
-                    : "w-2 bg-gray-300"
-                }`}
+                className="h-2 rounded-full transition-all duration-500"
+                style={{
+                  width: index === currentIndex ? "2rem" : "0.5rem",
+                  backgroundColor:
+                    index === currentIndex
+                      ? "var(--vp-primary)"
+                      : "var(--vp-border-default)",
+                }}
               />
             ))}
           </div>
 
-          {/* Social Proof Stats - ANIMATED */}
+          {/* Social Proof Stats */}
           <div
             ref={socialProofRef}
             className="mt-12 text-center"
             style={{ opacity: 0 }}
           >
-            <p className="text-sm text-muted-foreground">
+            <p
+              className="text-sm"
+              style={{ color: "var(--vp-text-secondary)" }}
+            >
               Join{" "}
-              <span className="font-semibold text-foreground">
+              <span
+                className="font-semibold"
+                style={{ color: "var(--vp-text-primary)" }}
+              >
                 8,200+ people
               </span>{" "}
               already on the waitlist

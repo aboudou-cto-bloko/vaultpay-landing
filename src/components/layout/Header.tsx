@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
+const HEADER_HEIGHT = 64;
+
 const navLinks = [
   { label: "How It Works", href: "#how-it-works" },
   { label: "Pricing", href: "#cost-breakdown" },
@@ -19,61 +21,103 @@ export function Header() {
       setIsScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const scrollTo = (selector: string) => {
+    const el = document.querySelector(selector) as HTMLElement;
+    if (!el) return;
+
+    const y = el.getBoundingClientRect().top + window.scrollY - HEADER_HEIGHT;
+
+    window.scrollTo({
+      top: y,
+      behavior: "smooth",
+    });
+  };
+
   const scrollToHero = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
     setIsMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleNavClick = (href: string) => {
     setIsMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    scrollTo(href);
   };
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-md border-b border-gray-200"
-          : "bg-white/5 backdrop-blur-sm border-b border-white/10"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 h-16 transition-all duration-300 will-change-[background-color,box-shadow]"
+      style={{
+        backgroundColor: isScrolled ? "var(--vp-surface)" : "transparent",
+        backdropFilter: isScrolled ? "var(--vp-backdrop-blur)" : "none",
+        borderBottom: `1px solid ${isScrolled ? "var(--vp-border-subtle)" : "transparent"}`,
+        boxShadow: isScrolled ? "var(--vp-shadow-sm)" : "none",
+        transform: "translateZ(0)",
+      }}
     >
-      <div className="vp-container">
-        <div className="flex items-center justify-between h-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+        <div className="flex items-center justify-between h-full">
           {/* Logo */}
           <button
             onClick={scrollToHero}
             className="flex items-center gap-2 group"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[var(--vp-primary)] to-[var(--vp-secondary)] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md">
-              <span className="text-white font-bold text-lg">V</span>
+            <div
+              className="w-9 h-9 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+              style={{
+                background: "var(--vp-gradient-brand)",
+                boxShadow: "var(--vp-shadow-sm)",
+              }}
+            >
+              <span
+                className="font-bold text-lg"
+                style={{
+                  fontFamily: "var(--font-outfit)",
+                  color: "var(--vp-primary-foreground)",
+                }}
+              >
+                V
+              </span>
             </div>
             <span
-              className={`font-bold text-lg transition-colors duration-300 ${
-                isScrolled ? "text-foreground" : "text-white"
-              }`}
+              className="font-bold text-lg transition-colors duration-300"
+              style={{
+                fontFamily: "var(--font-outfit)",
+                color: isScrolled
+                  ? "var(--vp-text-primary)"
+                  : "var(--vp-text-inverse)",
+              }}
             >
               VaultPay
             </span>
           </button>
 
-          {/* Desktop Navigation */}
+          {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <button
                 key={link.href}
                 onClick={() => handleNavClick(link.href)}
-                className={`text-sm font-normal transition-colors duration-200 hover:text-[var(--vp-primary)] ${
-                  isScrolled
-                    ? "text-muted-foreground hover:text-foreground"
-                    : "text-white/80 hover:text-white"
-                }`}
+                className="text-sm font-medium transition-colors duration-200"
+                style={{
+                  color: isScrolled
+                    ? "var(--vp-text-secondary)"
+                    : "var(--vp-text-inverse)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = isScrolled
+                    ? "var(--vp-text-primary)"
+                    : "var(--vp-surface)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = isScrolled
+                    ? "var(--vp-text-secondary)"
+                    : "var(--vp-text-inverse)";
+                }}
               >
                 {link.label}
               </button>
@@ -81,28 +125,48 @@ export function Header() {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-6">
-            <a
-              href="#final-cta"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick("#final-cta");
+          <div className="hidden md:flex">
+            <button
+              onClick={() => handleNavClick("#final-cta")}
+              className="font-semibold rounded-lg px-6 py-2.5 text-sm transition-all"
+              style={{
+                backgroundColor: "var(--vp-primary)",
+                color: "var(--vp-primary-foreground)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor =
+                  "var(--vp-primary-light)";
+                e.currentTarget.style.boxShadow =
+                  "var(--vp-shadow-lg), var(--vp-shadow-primary)";
+                e.currentTarget.style.transform = "translateY(-2px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "var(--vp-primary)";
+                e.currentTarget.style.boxShadow = "none";
+                e.currentTarget.style.transform = "translateY(0)";
               }}
             >
-              <Button className="bg-[var(--vp-primary)] hover:bg-[var(--vp-primary-dark)] text-white font-semibold rounded-lg px-6 py-2.5 text-sm transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5">
-                Join Waitlist
-              </Button>
-            </a>
+              Join Waitlist
+            </button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile menu toggle */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`md:hidden p-2 rounded-lg transition-colors duration-200 ${
-              isScrolled
-                ? "text-foreground hover:bg-gray-100"
-                : "text-white hover:bg-white/10"
-            }`}
+            onClick={() => setIsMobileMenuOpen((v) => !v)}
+            className="md:hidden p-2 rounded-lg transition-colors"
+            style={{
+              color: isScrolled
+                ? "var(--vp-text-primary)"
+                : "var(--vp-text-inverse)",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = isScrolled
+                ? "var(--vp-bg-subtle)"
+                : "rgba(255, 255, 255, 0.1)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "transparent";
+            }}
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
@@ -114,34 +178,46 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-200 shadow-lg">
-          <div className="vp-container py-4">
+        <div
+          className="md:hidden"
+          style={{
+            backgroundColor: "var(--vp-surface)",
+            borderTop: "1px solid var(--vp-border-subtle)",
+            boxShadow: "var(--vp-shadow-lg)",
+          }}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <nav className="flex flex-col gap-2 mb-4">
               {navLinks.map((link) => (
                 <button
                   key={link.href}
                   onClick={() => handleNavClick(link.href)}
-                  className="text-sm font-normal text-foreground hover:text-[var(--vp-primary)] text-left py-2 transition-colors duration-200"
+                  className="text-sm text-left py-2 transition-colors font-medium"
+                  style={{ color: "var(--vp-text-primary)" }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = "var(--vp-primary)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = "var(--vp-text-primary)";
+                  }}
                 >
                   {link.label}
                 </button>
               ))}
             </nav>
 
-            <a
-              href="#final-cta"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick("#final-cta");
+            <button
+              onClick={() => handleNavClick("#final-cta")}
+              className="w-full font-semibold rounded-lg py-3 text-sm"
+              style={{
+                backgroundColor: "var(--vp-primary)",
+                color: "var(--vp-primary-foreground)",
               }}
-              className="block"
             >
-              <Button className="bg-[var(--vp-primary)] hover:bg-[var(--vp-primary-dark)] text-white font-semibold rounded-lg w-full py-3 text-sm transition-all duration-200">
-                Join Waitlist
-              </Button>
-            </a>
+              Join Waitlist
+            </button>
           </div>
         </div>
       )}

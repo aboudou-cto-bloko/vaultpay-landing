@@ -15,7 +15,8 @@
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
-    --font-sans: var(--font-jost); /* ← Changé pour Jost */
+    --font-sans: var(--font-inter);
+    --font-display: var(--font-outfit); /* Outfit pour headings */
     --font-mono: var(--font-geist-mono);
 
     /* Mapping VaultPay colors */
@@ -59,101 +60,183 @@
     --radius-2xl: 1.5rem;
 }
 
+/* ============================================
+   PREMIUM COLOR PALETTE - LIGHT MODE
+   ============================================ */
 :root {
-    --radius: 0.75rem; /* 12px par défaut */
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
+    --radius: 0.75rem;
 
-    /* VaultPay primary/secondary override */
-    --primary: oklch(0.65 0.18 162); /* Emerald */
-    --primary-foreground: oklch(1 0 0);
-    --secondary: oklch(0.63 0.25 252); /* Blue */
+    /* Backgrounds - Off-white bleuté */
+    --background: oklch(0.995 0.002 240);
+    --foreground: oklch(0.15 0.01 240);
+
+    /* Cards & Surfaces */
+    --card: oklch(1 0 0); /* Pure white pour cards */
+    --card-foreground: oklch(0.15 0.01 240);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.15 0.01 240);
+
+    /* VaultPay Brand - Contraste optimal */
+    --primary: oklch(0.58 0.19 165); /* Emerald profond */
+    --primary-foreground: oklch(1 0 0); /* Blanc pur */
+    --secondary: oklch(0.55 0.22 255); /* Blue luxueux */
     --secondary-foreground: oklch(1 0 0);
 
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.65 0.18 162); /* Emerald */
+    /* Neutrals */
+    --muted: oklch(0.97 0.004 240);
+    --muted-foreground: oklch(0.45 0.01 240);
+    --accent: oklch(0.97 0.004 240);
+    --accent-foreground: oklch(0.15 0.01 240);
 
-    /* Charts, sidebar, etc. */
+    /* Semantic */
+    --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: oklch(1 0 0);
+
+    /* Borders - Plus foncées pour visibilité */
+    --border: oklch(0.9 0.005 240);
+    --input: oklch(0.9 0.005 240);
+    --ring: oklch(0.58 0.19 165);
+
+    /* Charts */
     --chart-1: oklch(0.646 0.222 41.116);
     --chart-2: oklch(0.6 0.118 184.704);
     --chart-3: oklch(0.398 0.07 227.392);
     --chart-4: oklch(0.828 0.189 84.429);
     --chart-5: oklch(0.769 0.188 70.08);
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
+
+    /* Sidebar */
+    --sidebar: oklch(1 0 0);
+    --sidebar-foreground: oklch(0.15 0.01 240);
+    --sidebar-primary: oklch(0.58 0.19 165);
+    --sidebar-primary-foreground: oklch(1 0 0);
+    --sidebar-accent: oklch(0.97 0.004 240);
+    --sidebar-accent-foreground: oklch(0.15 0.01 240);
+    --sidebar-border: oklch(0.9 0.005 240);
+    --sidebar-ring: oklch(0.75 0.01 240);
 }
 
+/* ============================================
+   PREMIUM DARK MODE
+   ============================================ */
 .dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.7 0.18 162); /* Emerald dark */
+    /* Rich dark backgrounds (pas 100% noir) */
+    --background: oklch(0.12 0.01 240);
+    --foreground: oklch(0.95 0.005 240);
+
+    /* Cards avec profondeur */
+    --card: oklch(0.16 0.012 240);
+    --card-foreground: oklch(0.95 0.005 240);
+    --popover: oklch(0.16 0.012 240);
+    --popover-foreground: oklch(0.95 0.005 240);
+
+    /* Brand colors - Plus lumineux en dark */
+    --primary: oklch(0.68 0.18 165);
     --primary-foreground: oklch(1 0 0);
-    --secondary: oklch(0.68 0.25 252); /* Blue dark */
+    --secondary: oklch(0.65 0.2 255);
     --secondary-foreground: oklch(1 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
+
+    /* Neutrals dark */
+    --muted: oklch(0.2 0.01 240);
+    --muted-foreground: oklch(0.7 0.01 240);
+    --accent: oklch(0.2 0.01 240);
+    --accent-foreground: oklch(0.95 0.005 240);
+
+    /* Semantic dark */
     --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
+    --destructive-foreground: oklch(1 0 0);
+
+    /* Borders lumineux + transparence */
+    --border: oklch(0.25 0.015 240 / 0.6);
+    --input: oklch(0.25 0.015 240 / 0.6);
+    --ring: oklch(0.68 0.18 165);
+
+    /* Charts dark */
     --chart-1: oklch(0.488 0.243 264.376);
     --chart-2: oklch(0.696 0.17 162.48);
     --chart-3: oklch(0.769 0.188 70.08);
     --chart-4: oklch(0.627 0.265 303.9);
     --chart-5: oklch(0.645 0.246 16.439);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
+
+    /* Sidebar dark */
+    --sidebar: oklch(0.16 0.012 240);
+    --sidebar-foreground: oklch(0.95 0.005 240);
+    --sidebar-primary: oklch(0.68 0.18 165);
+    --sidebar-primary-foreground: oklch(1 0 0);
+    --sidebar-accent: oklch(0.2 0.01 240);
+    --sidebar-accent-foreground: oklch(0.95 0.005 240);
+    --sidebar-border: oklch(0.25 0.015 240 / 0.6);
+    --sidebar-ring: oklch(0.35 0.02 240);
 }
 
+/* ============================================
+   BASE STYLES
+   ============================================ */
 @layer base {
     * {
         @apply border-border outline-ring/50;
     }
+
     body {
         @apply bg-background text-foreground;
-        font-family: var(--font-jost), sans-serif;
+        font-family: var(--font-inter), system-ui, sans-serif;
+        font-feature-settings: "cv11", "ss01"; /* Inter stylistic sets */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
+
     html {
         scroll-behavior: smooth;
     }
+
     * {
         -webkit-tap-highlight-color: transparent;
     }
+
+    /* Focus states accessibles */
     *:focus-visible {
         outline: 2px solid oklch(var(--vp-primary));
         outline-offset: 2px;
+        transition: outline-offset 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Headings utilisent Outfit */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--font-outfit), system-ui, sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.02em; /* Tight tracking pour premium */
+    }
+
+    /* Display text extra-large */
+    .text-display {
+        font-family: var(--font-outfit), system-ui, sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
     }
 }
 
+/* ============================================
+   PREMIUM UTILITIES
+   ============================================ */
 @layer utilities {
+    /* Backdrop blur premium pour cards */
+    .glass-card {
+        background: oklch(1 0 0 / 0.8);
+        backdrop-filter: blur(12px) saturate(120%);
+        border: 1px solid oklch(0.9 0.005 240 / 0.6);
+    }
+
+    .dark .glass-card {
+        background: oklch(0.16 0.012 240 / 0.6);
+        backdrop-filter: blur(16px) saturate(140%);
+        border: 1px solid oklch(0.25 0.015 240 / 0.4);
+    }
+
     /* Shine animation pour progress bar */
     @keyframes shine {
         0% {
@@ -205,5 +288,100 @@
         80% {
             transform: translateX(3%) translateY(-3%) scale(1.02);
         }
+    }
+
+    /* Fade-in animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(24px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-fade-in-up {
+        animation: fadeInUp 600ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}
+
+/* ============================================
+   PREMIUM SHADOWS
+   ============================================ */
+@layer utilities {
+    .shadow-premium-sm {
+        box-shadow:
+            0 2px 8px oklch(0 0 0 / 0.08),
+            0 1px 3px oklch(0 0 0 / 0.06);
+    }
+
+    .shadow-premium-md {
+        box-shadow:
+            0 8px 24px oklch(0 0 0 / 0.12),
+            0 2px 8px oklch(0 0 0 / 0.08);
+    }
+
+    .shadow-premium-lg {
+        box-shadow:
+            0 16px 48px oklch(0 0 0 / 0.16),
+            0 4px 16px oklch(0 0 0 / 0.12);
+    }
+
+    /* Dark mode shadows - Plus intenses */
+    .dark .shadow-premium-sm {
+        box-shadow:
+            0 2px 8px oklch(0 0 0 / 0.4),
+            0 1px 3px oklch(0 0 0 / 0.3);
+    }
+
+    .dark .shadow-premium-md {
+        box-shadow:
+            0 8px 24px oklch(0 0 0 / 0.5),
+            0 2px 8px oklch(0 0 0 / 0.4);
+    }
+
+    .dark .shadow-premium-lg {
+        box-shadow:
+            0 16px 48px oklch(0 0 0 / 0.6),
+            0 4px 16px oklch(0 0 0 / 0.5);
+    }
+
+    /* Glow effects pour CTAs */
+    .glow-primary {
+        box-shadow:
+            0 0 32px oklch(0.68 0.18 165 / 0.3),
+            0 0 64px oklch(0.68 0.18 165 / 0.15);
+    }
+
+    .glow-secondary {
+        box-shadow:
+            0 0 32px oklch(0.65 0.2 255 / 0.3),
+            0 0 64px oklch(0.65 0.2 255 / 0.15);
+    }
+}
+
+/* ============================================
+   PREMIUM TRANSITIONS
+   ============================================ */
+@layer utilities {
+    .transition-premium {
+        transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .transition-spring {
+        transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 }

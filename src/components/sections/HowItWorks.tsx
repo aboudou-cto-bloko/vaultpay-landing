@@ -233,30 +233,43 @@ export function HowItWorks() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="howitworks-section py-20 md:py-24 bg-white"
-    >
+    <section ref={sectionRef} className="howitworks-section py-20 md:py-24">
       <div className="max-w-7xl mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-20">
-            <h2 ref={headlineRef} className="text-4xl md:text-5xl font-bold">
+            <h2
+              ref={headlineRef}
+              className="text-4xl md:text-5xl font-bold"
+              style={{
+                fontFamily: "var(--font-outfit)",
+                color: "var(--vp-text-primary)",
+              }}
+            >
               4 Steps. Under 5 Minutes.
             </h2>
-            <p ref={subheadlineRef} className="text-lg text-gray-600 mt-3">
+            <p
+              ref={subheadlineRef}
+              className="text-lg mt-3"
+              style={{ color: "var(--vp-text-secondary)" }}
+            >
               From download to first transfer, you&apos;ll be up and running
               fast.
             </p>
           </div>
 
           <div className="relative">
-            <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-200" />
+            {/* Background path */}
+            <div
+              className="absolute left-6 top-0 bottom-0 w-0.5"
+              style={{ backgroundColor: "var(--vp-border-default)" }}
+            />
+
+            {/* Active path (animated) */}
             <div
               ref={pathRef}
               className="absolute left-6 top-0 w-0.5 origin-top"
               style={{
-                background:
-                  "linear-gradient(to bottom, var(--vp-primary), var(--vp-primary))",
+                background: "var(--vp-gradient-primary)",
                 height: "100%",
               }}
             />
@@ -275,43 +288,71 @@ export function HowItWorks() {
                     }}
                     className="relative pl-20"
                   >
+                    {/* Circle number */}
                     <div
-                      className="step-circle absolute left-0 top-0 w-12 h-12 rounded-full border-2 flex items-center justify-center"
+                      className="step-circle absolute left-0 top-0 w-12 h-12 rounded-full flex items-center justify-center transition-all"
                       style={{
-                        borderColor: isFilled ? "var(--vp-primary)" : "#e5e7eb",
+                        borderWidth: "2px",
+                        borderStyle: "solid",
+                        borderColor: isFilled
+                          ? "var(--vp-primary)"
+                          : "var(--vp-border-default)",
                         backgroundColor: isFilled
                           ? "var(--vp-primary)"
-                          : "white",
+                          : "var(--vp-surface)",
                       }}
                     >
                       <span
                         className="font-bold text-lg"
-                        style={{ color: isFilled ? "white" : "#9ca3af" }}
+                        style={{
+                          fontFamily: "var(--font-outfit)",
+                          color: isFilled
+                            ? "var(--vp-primary-foreground)"
+                            : "var(--vp-text-tertiary)",
+                        }}
                       >
                         {step.number}
                       </span>
                     </div>
 
+                    {/* Icon wrapper */}
                     <div
-                      className="step-icon w-14 h-14 rounded-xl flex items-center justify-center mb-4"
+                      className="step-icon w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all"
                       style={{
-                        border: "1px solid",
-                        borderColor: isActive ? "var(--vp-primary)" : "#e5e7eb",
-                        backgroundColor: isActive ? "#f0fdf4" : "#f9fafb",
+                        borderWidth: "1px",
+                        borderStyle: "solid",
+                        borderColor: isActive
+                          ? "var(--vp-primary)"
+                          : "var(--vp-border-subtle)",
+                        backgroundColor: isActive
+                          ? "var(--vp-success-bg)"
+                          : "var(--vp-bg-subtle)",
                       }}
                     >
                       <Icon
                         className="w-7 h-7"
                         style={{
-                          color: isActive ? "var(--vp-primary)" : "#9ca3af",
+                          color: isActive
+                            ? "var(--vp-primary)"
+                            : "var(--vp-text-tertiary)",
                         }}
                       />
                     </div>
 
-                    <h3 className="step-title text-2xl font-bold mb-2">
+                    {/* Content */}
+                    <h3
+                      className="step-title text-2xl font-bold mb-2"
+                      style={{
+                        fontFamily: "var(--font-outfit)",
+                        color: "var(--vp-text-primary)",
+                      }}
+                    >
                       {step.title}
                     </h3>
-                    <p className="step-desc text-gray-600 max-w-md">
+                    <p
+                      className="step-desc max-w-md"
+                      style={{ color: "var(--vp-text-secondary)" }}
+                    >
                       {step.description}
                     </p>
                   </div>
@@ -320,20 +361,33 @@ export function HowItWorks() {
             </div>
           </div>
 
+          {/* Security Card */}
           <div
             ref={securityRef}
-            className="mt-20 bg-gray-50 border rounded-2xl p-8 text-center"
+            className="mt-20 rounded-2xl p-8 text-center glass-card"
           >
             <div
               className="security-icon w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4"
               style={{ backgroundColor: "var(--vp-primary)" }}
             >
-              <ShieldCheck className="w-6 h-6 text-white" />
+              <ShieldCheck
+                className="w-6 h-6"
+                style={{ color: "var(--vp-primary-foreground)" }}
+              />
             </div>
-            <h3 className="security-title text-2xl font-bold mb-2">
+            <h3
+              className="security-title text-2xl font-bold mb-2"
+              style={{
+                fontFamily: "var(--font-outfit)",
+                color: "var(--vp-text-primary)",
+              }}
+            >
               Bank-Grade Security
             </h3>
-            <p className="security-desc text-gray-600 max-w-2xl mx-auto">
+            <p
+              className="security-desc max-w-2xl mx-auto"
+              style={{ color: "var(--vp-text-secondary)" }}
+            >
               Fully licensed and regulated by FINTRAC in Canada.
             </p>
           </div>
